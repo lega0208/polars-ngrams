@@ -1,3 +1,4 @@
+#![allow(clippy::unused_unit)]
 use polars::chunked_array::builder::AnonymousListBuilder;
 use polars::prelude::*;
 use pyo3_polars::derive::polars_expr;
@@ -35,7 +36,7 @@ fn ngrams(inputs: &[Series], kwargs: Kwargs) -> PolarsResult<Series> {
 
         for window in window_array_series.iter() {
             // Error handling?
-            let _ = row_list_builder.append_series(&window);
+            let _ = row_list_builder.append_series(window);
         }
 
         row_list_builder.finish().into_series()
